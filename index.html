@@ -28,6 +28,7 @@
 
 		// Settings for Chat
 	    embedded_svc.settings.directToButtonRouting = function (prechatFormData) {
+		    CONSOLE.warn('DIRECT TO BUTTON');
 	      for (var i in prechatFormData) {
 		if (prechatFormData[i].name === 'Subject') {
 		  let subjectString = prechatFormData[i].value;
