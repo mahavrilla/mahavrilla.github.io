@@ -15,66 +15,7 @@
 </style>
 
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
-<script type='text/javascript'>
-	var initESW = function(gslbBaseURL) {
-		embedded_svc.settings.displayHelpButton = true; //Or false
-		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+<script type='text/javascript' src='https://dev-ziprecruiter.cs90.force.com/prechatsnap'></script>
 
-		embedded_svc.settings.defaultMinimizedText = 'test' //(Defaults to Chat with an Expert)
-		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
-
-		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-
-		// Settings for Chat
-		console.warn('loading...');
-	        embedded_svc.settings.directToButtonRouting = function (prechatFormData) {
-		    console.warn('directToButtonRouting', JSON.stringify(prechatFormData));
-		    for (var i in prechatFormData) {
-		        if (prechatFormData[i].name === 'Subject') {
-			  let subjectString = prechatFormData[i].value;
-			  let buttonIds = subjectString.substring(0, subjectString.indexOf("|"));
-			  let buttonArrary = [];
-			  buttonArrary = buttonIds.split(',');
-			  embedded_svc.settings.fallbackRouting = buttonArrary;
-			  return null;
-			}
-		    }
-		};
-			//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
-
-		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-		embedded_svc.settings.entryFeature = 'LiveAgent';
-
-		embedded_svc.init(
-			'https://ziprecruiter--dev.my.salesforce.com',
-			'https://dev-ziprecruiter.cs90.force.com',
-			gslbBaseURL,
-			'00D1F000000dU4v',
-			'Snap_Chat_Default',
-			{
-				baseLiveAgentContentURL: 'https://c.la4-c1cs-phx.salesforceliveagent.com/content',
-				deploymentId: '572G0000000fxSa',
-				buttonId: '5730f0000004vgL',
-				baseLiveAgentURL: 'https://d.la4-c1cs-phx.salesforceliveagent.com/chat',
-				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I0f000000TN1FEAW_16ac670e84b',
-				isOfflineSupportEnabled: false
-			}
-		);
-	};
-
-	if (!window.embedded_svc) {
-		var s = document.createElement('script');
-		s.setAttribute('src', 'https://ziprecruiter--dev.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-		s.onload = function() {
-			initESW(null);
-		};
-		document.body.appendChild(s);
-	} else {
-		initESW('https://service.force.com');
-	}
-</script>
     </body>
 </html>
